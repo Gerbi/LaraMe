@@ -2,8 +2,20 @@
 
 @section('content')
     <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{url('/home')}}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{url('/profile')}}/{{Auth::user()->name}}">Profile</a></li>
+                <li class="breadcrumb-item"><a href="{{url('/editProfile')}}">Edit Profile</a></li>
+                <li class="breadcrumb-item"><a href="">Change Image</a></li>
+            </ol>
+        </nav>
+
         <div class="row justify-content-center">
-            <div class="col-md-8">
+
+            @include('profile.sidebar')
+
+            <div class="col-md-9">
                 <div class="card">
                     <div class="card-header">{{Auth::user()->name}}</div>
 
@@ -11,10 +23,8 @@
                         <div class="row">
                             <div class="col-sm-6 col-md-4">
                                 <div class="card">
-                                    Edit
-
-                                    Welcome to you profile!
                                     <p align="center">
+                                        <br>
                                         <img class="img-circle rounded-circle" src="{{url('../')}}/public/img/{{Auth::user()->pic}}" width="130px" height="130px"/>
                                     </p>
                                     <div class="card-body">

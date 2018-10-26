@@ -34,6 +34,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('editProfile', 'ProfileController@editProfileForm');
 
+    Route::post('/updateProfile', 'ProfileController@updateProfile');
+
 });
 
 Route::get('/logout', 'Auth\LoginController@logout');

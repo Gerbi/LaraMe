@@ -12,7 +12,7 @@ class ProfileController extends Controller
     public function index($slug){
 
 
-        return view('profile.index');
+        return view('profile.index')->with('data', Auth::user()->profile);
     }
 
     public function uploadPhoto(Request $request){
@@ -32,5 +32,14 @@ class ProfileController extends Controller
 
     public function editProfileForm() {
         return view('profile.editProfile')->with('data', Auth::user()->profile);
+    }
+
+    //function update profile user
+    public function updateProfile(Request $request) {
+
+        $user_id = Auth::user()->id;
+
+        DB::table('profiles')->where('user_id', $user_id)->update($request->except('_token'));
+        return back();
     }
 }
