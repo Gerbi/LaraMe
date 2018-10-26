@@ -43,6 +43,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{url('/profile')}}/{{Auth::user()->slug }}">Profile</a>
                         </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{url('/findFriends')}}">Friends</a>
+                            </li>
 
                         @endauth
                     </ul>

@@ -34,7 +34,7 @@
 
                             <h3><a href="{{url('/profile')}}/{{$uList->slug}}">
                                     {{ucwords($uList->name)}}</a></h3>
-                            <p><i class="material-icons">place</i> {{$uList->city}}  - {{$uList->country}}</p>
+                            <p><i class="fas fa-globe-americas"></i> {{$uList->city}}  - {{$uList->country}}</p>
                             <p>{{$uList->about}}</p>
 
                         </div>
