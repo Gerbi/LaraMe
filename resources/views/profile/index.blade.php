@@ -14,12 +14,13 @@
                                     <br>
                                     <h3>{{Auth::user()->name}}</h3>
                                     <p align="center">
-                                        <img src="{{url('../')}}/public/img/{{Auth::user()->pic}}" width="120px" height="120px">
+                                        <img src="{{url('../')}}/public/img/{{Auth::user()->pic}}" width="80px" height="80px">
+
                                     </p>
                                     <div class="card-body">
                                         <p align="center"></p>
                                         <p align="center">
-                                            <a href="{{url('/editProfile')}}" class="btn btn-primary">Edit Profile</a>
+                                            <a href="{{url('/')}}/changePhoto" class="btn btn-primary">Change Image</a>
                                         </p>
                                     </div>
                                 </div>

@@ -54,6 +54,11 @@
                                 @endif
                             </li>
                         @else
+                            <li><a href="">
+                                    <img src="{{url('../')}}/public/img/{{Auth::user()->pic}}" width="30px" height="30px" class="rounded-circle">
+                                </a>
+                            </li>
+
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ ucwords(Auth::user()->name) }} <span class="caret"></span>
