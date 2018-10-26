@@ -42,7 +42,12 @@
                             <a class="nav-link" href="{{url('/findFriends')}}">Friends</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{url('/requests')}}">My Requests</a>
+                            <a class="nav-link" href="{{url('/requests')}}">My Requests
+                                <span style="color:green; font-weight:bold;
+                                       font-size:14px">({{App\friendships::where('status', Null)
+                                                  ->where('user_requested', Auth::user()->id)
+                                                  ->count()}})</span>
+                            </a>
                         </li>
 
                     @endauth

@@ -87,7 +87,7 @@ class ProfileController extends Controller
                 ->update(['status' => 1]);
             if ($updateFriendships){
 
-                return back()->with('profile.requests')->with('msg','You are now Friend with this user');
+                return back()->with('profile.requests')->with('msg','You are now Friend with '.$name);
 
             }
         }else{

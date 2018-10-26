@@ -30,7 +30,7 @@
 
                             <div class="row" style="border-bottom:1px solid #ccc; margin-bottom:15px">
                                 <div class="col-md-2 pull-left">
-                                    <img src="{{url('../')}}/public/img/{{$uList->pic}}" width="80px" height="80px" class="img-rounded"/>
+                                    <img src="{{url('../')}}/public/img/{{$uList->pic}}" width="80px" height="80px" class="rounded-circle"/>
                                 </div>
 
                                 <div class="col-md-7 pull-left">
@@ -44,7 +44,7 @@
                                 <div class="col-md-3 pull-right">
                                     <br>
                                     <p align="center">
-                                        <a href="{{url('/accept')}}/{{$uList->name}}/{{$uList->id}}"  class="btn btn-primary btn-sm">Confirm</a>
+                                        <a href="{{url('/accept')}}/{{$uList->name}}/{{$uList->id}}"  class="btn btn-outline-primary btn-sm">Confirm</a>
                                         <a href="{{url('/requestRemove')}}/{{$uList->id}}"  class="btn btn-outline-danger btn-sm">Remove</a>
                                     </p>
 
