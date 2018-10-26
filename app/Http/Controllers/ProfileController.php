@@ -59,4 +59,16 @@ class ProfileController extends Controller
 
         return back();
     }
+
+    public function requests() {
+        $uid = Auth::user()->id;
+
+        $FriendRequests = DB::table('friendships')
+            ->rightJoin('users', 'users.id', '=', 'friendships.requester')
+            ->where('status', '=', Null)
+            ->where('friendships.user_requested', '=', $uid)->get();
+
+
+        return view('profile.requests', compact('FriendRequests'));
+    }
 }

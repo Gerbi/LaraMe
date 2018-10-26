@@ -70,7 +70,7 @@ class RegisterController extends Controller
         }
         else
         {
-            $pic_path = 'girl.jpg';
+            $pic_path = 'girl.png';
         }
         $user = User::create([
             'name' => $data['name'],

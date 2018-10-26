@@ -41,6 +41,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{url('/findFriends')}}">Friends</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{url('/requests')}}">My Requests</a>
+                        </li>
 
                     @endauth
                 </ul>

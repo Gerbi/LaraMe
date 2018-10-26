@@ -44,6 +44,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/addFriend/{id}', 'ProfileController@sendRequest');
 
+    Route::get('/requests', 'ProfileController@requests');
+
 
 
 });
