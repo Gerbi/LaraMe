@@ -15,6 +15,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -37,6 +38,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{url('/profile')}}/{{Auth::user()->slug }}">Profile</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{url('/findFriends')}}">Friends</a>
+                        </li>
 
                     @endauth
                 </ul>
@@ -54,7 +58,7 @@
                             @endif
                         </li>
                     @else
-                        <li><a href="">
+                        <li><a href="" class="nav-link d-flex align-items-center pt-0">
                                 <img src="{{url('../')}}/public/img/{{Auth::user()->pic}}" width="30px" height="30px" class="rounded-circle">
                             </a>
                         </li>

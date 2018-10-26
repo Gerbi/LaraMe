@@ -18,6 +18,12 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style type="text/css">
+        .sidebar .nav-item a {
+  color: #2a5164;
+  padding: 0.5rem 0rem;
+}
+    </style>
 </head>
 <body>
     <div id="app">
@@ -54,7 +60,7 @@
                                 @endif
                             </li>
                         @else
-                            <li><a href="">
+                            <li><a href="" class="nav-link d-flex align-items-center pt-0">
                                     <img src="{{url('../')}}/public/img/{{Auth::user()->pic}}" width="30px" height="30px" class="rounded-circle">
                                 </a>
                             </li>

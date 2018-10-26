@@ -18,6 +18,7 @@ Route::get('/test', function () {
     return Auth::user()->test();
 });
 
+
 Auth::routes();
 
 
@@ -38,6 +39,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('editProfile', 'ProfileController@editProfileForm');
 
     Route::post('/updateProfile', 'ProfileController@updateProfile');
+
+    Route::get('/findFriends', 'ProfileController@findFriends');
+
+    Route::get('/addFriend/{id}', 'ProfileController@sendRequest');
+
+
 
 });
 

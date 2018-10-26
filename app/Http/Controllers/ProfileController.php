@@ -42,4 +42,21 @@ class ProfileController extends Controller
         DB::table('profiles')->where('user_id', $user_id)->update($request->except('_token'));
         return back();
     }
+
+    public function findFriends() {
+
+        $uid = Auth::user()->id;
+        $allUsers = DB::table('profiles')
+            ->leftJoin('users', 'users.id', '=', 'profiles.user_id')
+            ->where('users.id', '!=', $uid)->get();
+
+        return view('profile.findFriends', compact('allUsers'));
+    }
+
+    public function sendRequest($id) {
+
+        Auth::user()->addFriend($id);
+
+        return back();
+    }
 }
