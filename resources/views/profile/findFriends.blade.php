@@ -57,7 +57,7 @@
                             <?php } else {?>
                                 <br>
                                 <p align="center">
-                                    <button type="button" class="btn text-black-50" style="background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);" disabled>Request Sent</button>
+                                    <button type="button" class="btn btn-primary" disabled>Request Sent</button>
                                 </p>
 
                             <?php }?>

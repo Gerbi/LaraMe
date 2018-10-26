@@ -43,12 +43,9 @@
 
                                 <div class="col-md-3 pull-right">
                                     <br>
-
                                     <p align="center">
                                         <a href="{{url('/accept')}}/{{$uList->name}}/{{$uList->id}}"  class="btn btn-primary btn-sm">Confirm</a>
-
                                         <a href="{{url('/requestRemove')}}/{{$uList->id}}"  class="btn btn-outline-danger btn-sm">Remove</a>
-
                                     </p>
 
                                 </div>

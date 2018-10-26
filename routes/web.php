@@ -46,6 +46,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/requests', 'ProfileController@requests');
 
+    Route::get('/accept/{name}/{id}', 'ProfileController@accept');
+
 
 
 });

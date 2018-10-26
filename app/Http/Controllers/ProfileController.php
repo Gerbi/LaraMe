@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\friendships;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -70,5 +71,29 @@ class ProfileController extends Controller
 
 
         return view('profile.requests', compact('FriendRequests'));
+    }
+
+    public function accept($name, $id) {
+
+        $uid = Auth::user()->id;
+        $checkRequest = friendships::where('requester',$id)
+            ->where('user_requested', $uid)
+            ->first();
+
+        if($checkRequest){
+         $updateFriendships =   DB::table('friendships')
+                ->where('user_requested', $uid)
+                ->where('requester', $id)
+                ->update(['status' => 1]);
+            if ($updateFriendships){
+
+                return back()->with('profile.requests')->with('msg','You are now Friend with this user');
+
+            }
+        }else{
+            return back()->with('profile.requests')->with('msg','You are now Friend with this user');
+        }
+
+
     }
 }
