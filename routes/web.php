@@ -31,6 +31,9 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     Route::post('/uploadPhoto', 'ProfileController@uploadPhoto');
+
+    Route::get('editProfile', 'ProfileController@editProfileForm');
+
 });
 
 Route::get('/logout', 'Auth\LoginController@logout');

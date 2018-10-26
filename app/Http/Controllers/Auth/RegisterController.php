@@ -72,13 +72,20 @@ class RegisterController extends Controller
         {
             $pic_path = 'girl.jpg';
         }
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
-            'pic'=>'$pic_path',
+            'pic'=> $pic_path,
             'gender' => $data['gender'],
             'slug' => str_slug($data['name'], '-'),
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        Profile::create(['user_id' =>$user->id]);
+        return $user;
+
     }
+
+
+
 }

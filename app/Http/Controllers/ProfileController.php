@@ -29,4 +29,8 @@ class ProfileController extends Controller
         //return view('profile.index');
         return back();
     }
+
+    public function editProfileForm() {
+        return view('profile.editProfile')->with('data', Auth::user()->profile);
+    }
 }
