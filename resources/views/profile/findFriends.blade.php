@@ -7,6 +7,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{url('/home')}}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{url('/profile')}}/{{Auth::user()->slug}}">Profile</a></li>
             <li class="breadcrumb-item"><a href="">Find Friends</a></li>
         </ol>
     </nav>

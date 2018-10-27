@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\User;
+use App\notifications;
 
 class ProfileController extends Controller
 {
@@ -66,9 +67,8 @@ class ProfileController extends Controller
 
         $FriendRequests = DB::table('friendships')
             ->rightJoin('users', 'users.id', '=', 'friendships.requester')
-            ->where('status', '=', Null)
+            ->where('status', '=', null)
             ->where('friendships.user_requested', '=', $uid)->get();
-
 
         return view('profile.requests', compact('FriendRequests'));
     }
@@ -76,22 +76,29 @@ class ProfileController extends Controller
     public function accept($name, $id) {
 
         $uid = Auth::user()->id;
-        $checkRequest = friendships::where('requester',$id)
+        $checkRequest = friendships::where('requester', $id)
             ->where('user_requested', $uid)
             ->first();
+        if ($checkRequest) {
 
-        if($checkRequest){
-         $updateFriendships =   DB::table('friendships')
+            $updateFriendship = DB::table('friendships')
                 ->where('user_requested', $uid)
                 ->where('requester', $id)
                 ->update(['status' => 1]);
-            if ($updateFriendships){
 
-                return back()->with('profile.requests')->with('msg','You are now Friend with '.$name);
+            $notifications = new notifications;
+            $notifications->note = 'Accepted your friend request';
+            $notifications->user_hero = $id; // who is accepting my request
+            $notifications->user_logged = Auth::user()->id; // me
+            $notifications->status = '1'; // unread notifications
+            $notifications->save();
 
+            if ($notifications) {
+
+                return back()->with('msg', 'You are now Friend with ' . $name);
             }
-        }else{
-            return back()->with('profile.requests')->with('msg','You are now Friend with this user');
+        } else {
+            return back()->with('msg', 'You are now Friend with this user');
         }
     }
 

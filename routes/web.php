@@ -10,13 +10,24 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/test', function () {
+    $noti = DB::table('notifications')
+    ->where('user_logged', Auth::user()->id)
+    ->get();
+    dd($noti);
+});
+
+Route::get('/count', function () {
+    $count = DB::table('notifications')
+        ->where('user_hero', Auth::user()->id)
+        ->count();
+    dd($count);
+});
 
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/test', function () {
-    return Auth::user()->test();
-});
+
 
 
 Auth::routes();
