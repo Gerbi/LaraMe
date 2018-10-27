@@ -7,7 +7,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{url('/home')}}">Home</a></li>
-                <li class="breadcrumb-item"><a href=""></a>Requests</li>
+                <li class="breadcrumb-item"><a href="{{url('/friends')}}"></a>Friends</li>
             </ol>
         </nav>
 
@@ -25,11 +25,11 @@
                                 {{ session()->get('msg') }}
                             </p>
                         @endif
-                        @foreach($FriendRequests as $uList)
+                        @foreach($friends as $uList)
 
                             <div class="row">
                                 <div class="col-md-2 pull-left">
-                                    <img src="{{url('../')}}/public/img/{{$uList->pic}}" width="80px" height="80px" class="rounded-circle"/>
+                                    <img class="rounded-circle" src="{{url('../')}}/public/img/{{$uList->pic}}" width="80px" height="80px" class="img-rounded"/>
                                 </div>
 
                                 <div class="col-md-7 pull-left">
@@ -43,8 +43,7 @@
                                 <div class="col-md-3 pull-right">
                                     <br>
                                     <p align="center">
-                                        <a href="{{url('/accept')}}/{{$uList->name}}/{{$uList->id}}"  class="btn btn-outline-primary btn-sm">Confirm</a>
-                                        <a href="{{url('/requestRemove')}}/{{$uList->id}}"  class="btn btn-outline-danger btn-sm">Remove</a>
+                                        <a href="{{url('/unfriend')}}/{{$uList->id}}"  class="btn btn-outline-danger btn-sm">Unfriend</a>
                                     </p>
 
                                 </div>

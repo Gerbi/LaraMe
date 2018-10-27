@@ -7,7 +7,6 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{url('/home')}}">Home</a></li>
-            <li class="breadcrumb-item"><a href="{{url('/profile')}}/{{Auth::user()->slug}}"></a>Profile</li>
             <li class="breadcrumb-item"><a href="">Find Friends</a></li>
         </ol>
     </nav>
@@ -17,13 +16,13 @@
         @include('profile.sidebar')
 
         <div class="col-md-9">
-            <div class="card" style="border: white">
-                <div class="card-header" style="background-color: white">{{Auth::user()->name}}</div>
+            <div class="card">
+                <div class="card-header">{{Auth::user()->name}}</div>
 
                 <div class="card-body">
                     @foreach($allUsers as $uList)
 
-                    <div class="row" style="border-bottom:1px solid #ccc; margin-bottom:15px">
+                    <div class="row">
                         <div class="col-md-2 pull-left">
                             <p align="center"><img src="{{url('../')}}/public/img/{{$uList->pic}}"
                                                     width="100px" height="100px" class="rounded-circle"/></p>

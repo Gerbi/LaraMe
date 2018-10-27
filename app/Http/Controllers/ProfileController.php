@@ -93,7 +93,37 @@ class ProfileController extends Controller
         }else{
             return back()->with('profile.requests')->with('msg','You are now Friend with this user');
         }
-
-
     }
+
+    public function friends() {
+        $uid = Auth::user()->id;
+
+        $friends1 = DB::table('friendships')
+            ->leftJoin('users', 'users.id', 'friendships.user_requested') // who is not loggedin but send request to
+            ->where('status', 1)
+            ->where('requester', $uid) // who is loggedin
+            ->get();
+
+        $friends2 = DB::table('friendships') // send request
+            ->leftJoin('users', 'users.id', 'friendships.requester')
+            ->where('status', 1)
+            ->where('user_requested', $uid)
+            ->get();
+
+        $friends = array_merge($friends1->toArray(), $friends2->toArray());
+
+        return view('profile.friends', compact('friends'));
+    }
+
+    public function requestRemove($id) {
+
+        DB::table('friendships')
+            ->where('user_requested', Auth::user()->id)
+            ->where('requester', $id)
+            ->delete();
+
+        return back()->with('msg', 'Request has been deleted');
+    }
+
+
 }

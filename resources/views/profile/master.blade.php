@@ -49,6 +49,9 @@
                                                   ->count()}})</span>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{url('/friends')}}">Friends</a>
+                        </li>
 
                     @endauth
                 </ul>
