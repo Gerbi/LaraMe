@@ -22,6 +22,7 @@
 </head>
 <body>
 <div id="app">
+    {{-- Navbar --}}
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
@@ -36,9 +37,6 @@
                 <ul class="navbar-nav mr-auto">
                     @auth
                         <li class="nav-item">
-                            <a class="nav-link" href="{{url('/profile')}}/{{Auth::user()->slug }}">Profile</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="{{url('/findFriends')}}">Find Friends</a>
                         </li>
                         <li class="nav-item">
@@ -46,13 +44,10 @@
                                 <span style="color:green; font-weight:bold;
                                        font-size:14px">({{App\friendships::where('status', Null)
                                                   ->where('user_requested', Auth::user()->id)
-                                                  ->count()}})</span>
+                                                  ->count()}})
+                                </span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{url('/friends')}}">Friends</a>
-                        </li>
-
                     @endauth
                 </ul>
 
@@ -69,19 +64,51 @@
                             @endif
                         </li>
                     @else
-                        <li><a href="" class="nav-link d-flex align-items-center pt-0">
-                                <img src="{{url('../')}}/public/img/{{Auth::user()->pic}}" width="30px" height="30px" class="rounded-circle">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{url('/friends')}}"><i class="fas fa-user-friends fa-2x"></i></a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown">
+                                <i class="fas fa-globe-americas fa-2x" aria-hidden="true"></i>
+                                <span class="badge badge-danger"
+                                      style="position: relative; top: -15px; left: -10px;">
+                                    {{App\notifications::where('status', 1)
+                                            ->where('user_hero', Auth::user()->id)
+                                            ->count()}}
+                                </span>
                             </a>
+                            <?php
+                            $notes = DB::table('notifications')
+                            ->where('user_logged',Auth::user()->id)
+                            ->get();
+                            ?>
+
+                            <?php
+                            $notes = DB::table('notifications')
+                                    ->leftJoin('users','users.id', 'notifications.user_logged')
+                                    ->where('user_hero', Auth::user()->id)
+                                    ->where('status',1)//No leido
+                                    ->orderBy('notifications.created_at','ASC')
+                                    ->get();
+
+                            ?>    
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                @foreach($notes as $note)
+                                <a class="dropdown-item" href="{{url('notifications')}}/{{$note->id}}"><b style="color: green">{{ucwords($note->name)}}</b> {{$note->note}}</a>
+                                @endforeach
+                            </div>
                         </li>
 
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ ucwords(Auth::user()->name) }} <span class="caret"></span>
+                                <img src="{{url('../')}}/public/img/{{Auth::user()->pic}}" width="28px" height="28px" class="rounded-circle">
+                                <span class="caret"></span>
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{url('editProfile')}}">Edit Profile
-                                </a>
+                                <a class="dropdown-item" href="{{url('/profile')}}/{{Auth::user()->slug }}">Profile</a>
+                                <a class="dropdown-item" href="{{url('editProfile')}}">Edit Profile</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -93,6 +120,7 @@
                                 </form>
                             </div>
                         </li>
+
                     @endguest
                 </ul>
             </div>
