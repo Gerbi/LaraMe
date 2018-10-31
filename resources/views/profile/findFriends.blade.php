@@ -24,29 +24,27 @@
                     @foreach($allUsers as $uList)
 
                     <div class="row">
-                        <div class="col-md-2 pull-left">
+                        <div class="col-md-2">
                             <p align="center"><img src="{{url('../')}}/public/img/{{$uList->pic}}"
                                                     width="100px" height="100px" class="rounded-circle"/></p>
 
                         </div>
 
-                        <div class="col-md-7 pull-left">
+                        <div class="col-md-7">
 
                             <h3><a href="{{url('/profile')}}/{{$uList->slug}}">
                                     {{ucwords($uList->name)}}</a></h3>
                             <p><i class="fas fa-globe-americas"></i> {{$uList->city}}  - {{$uList->country}}</p>
                             <p>{{$uList->about}}</p>
-
                         </div>
 
-                        <div class="col-md-3 pull-right">
+                        <div class="col-md-3">
 
                             <?php
                             $check = DB::table('friendships')
                                 ->where('user_requested', '=', $uList->id)
                                 ->where('requester', '=', Auth::user()->id)
                                 ->first();
-
                             if($check ==''){
                                 ?>
                                 <br>
@@ -59,7 +57,6 @@
                                 <p align="center">
                                     <button type="button" class="btn btn-primary" disabled>Request Sent</button>
                                 </p>
-
                             <?php }?>
                         </div>
 

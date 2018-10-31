@@ -34,10 +34,8 @@
 
                                 <div class="col-md-7 pull-left">
                                     <h3 style="margin:0px;"><a href="">{{ucwords($uList->name)}}</a></h3>
-
                                     <p><b>Gender:</b> {{$uList->gender}}</p>
                                     <p><b>Email:</b> {{$uList->email}}</p>
-
                                 </div>
 
                                 <div class="col-md-3 pull-right">
@@ -45,7 +43,6 @@
                                     <p align="center">
                                         <a href="{{url('/unfriend')}}/{{$uList->id}}"  class="btn btn-outline-danger btn-sm">Unfriend</a>
                                     </p>
-
                                 </div>
 
                             </div>

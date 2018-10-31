@@ -93,11 +93,34 @@
                                     ->get();
 
                             ?>    
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" style="width: 320px; background-color: #E4E9F2;">
                                 @foreach($notes as $note)
-                                <a class="dropdown-item" href="{{url('notifications')}}/{{$note->id}}"><b style="color: green">{{ucwords($note->name)}}</b> {{$note->note}}</a>
+                                    <a href="{{url('/notifications')}}/{{$note->id}}">
+                                        @if($note->status==1)
+                                            <li style="background:#E4E9F2; padding:10px">
+                                        @else
+                                            <li style="padding:10px">
+                                                @endif
+                                                <div class="row">
+                                                    <div class="col-md-2">
+                                                        <img src="{{url('../')}}/public/img/{{$note->pic}}"
+                                                             style="width:50px; padding:5px; background:#fff; border:1px solid #eee" class="rounded-circle">
+                                                    </div>
+
+                                                    <div class="col-md-10">
+                                                        <b style="color:green; font-size:90%">{{ucwords($note->name)}}</b>
+                                                        <span style="color:#000; font-size:90%">{{$note->note}}</span>
+                                                        <br/>
+                                                        <small style="color:#90949C"> <i aria-hidden="true" class="fa fa-users"></i>
+                                                            {{date('F j, Y', strtotime($note->created_at))}}
+                                                            at {{date('H: i', strtotime($note->created_at))}}</small>
+                                                    </div>
+
+                                                </div>
+                                            </li>
+                                    </a>
                                 @endforeach
-                            </div>
+                            </ul>
                         </li>
 
                         <li class="nav-item dropdown">

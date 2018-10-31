@@ -12,9 +12,11 @@ use App\notifications;
 class ProfileController extends Controller
 {
     public function index($slug){
-
-
-        return view('profile.index')->with('data', Auth::user()->profile);
+        $userData = DB::table('users')
+            ->leftJoin('profiles', 'profiles.user_id','users.id')
+            ->where('slug', $slug)
+            ->get();
+       return view('profile.index', compact('userData'))->with('data', Auth::user()->profile);
     }
 
     public function uploadPhoto(Request $request){
@@ -134,16 +136,15 @@ class ProfileController extends Controller
 
     public function notifications($id){
         $uid = Auth::user()->id;
-
         $notes = DB::table('notifications')
-            ->leftJoin('users','users.id', 'notifications.user_logged')
-            ->where('notifications.id',$id)
+            ->leftJoin('users', 'users.id', 'notifications.user_logged')
+            ->where('notifications.id', $id)
             ->where('user_hero', $uid)
-            ->orderBy('notifications.created_at','ASC')
+            ->orderBy('notifications.created_at', 'desc')
             ->get();
 
         $updateNoti = DB::table('notifications')
-            ->where('notifications.id',$id)
+            ->where('notifications.id', $id)
             ->update(['status' => 0]);
 
         return view('profile.notifications', compact('notes'));

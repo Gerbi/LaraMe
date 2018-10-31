@@ -14,9 +14,11 @@
 
             @include('profile.sidebar')
 
+            @foreach($userData as $uData)
+
             <div class="col-md-9">
                 <div class="card">
-                    <div class="card-header">{{Auth::user()->name}}</div>
+                    <div class="card-header">{{$uData->name}}</div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm-6 col-md-4">
@@ -24,22 +26,22 @@
                                     <p align="center">
                                         <br>
                                         <br>
-                                        <img class="rounded-circle" src="{{url('../')}}/public/img/{{Auth::user()->pic}}" width="80px" height="80px">
+                                        <img class="rounded-circle" src="{{url('../')}}/public/img/{{$uData->pic}}" width="80px" height="80px">
 
                                     </p>
                                     <div class="card-body">
-                                        <p align="center">{{$data->city}} - {{$data->country}}</p>
-
+                                        <p align="center">{{$uData->city}} - {{$uData->country}}</p>
+                                            @if ($uData->user_id == Auth::user()->id)
                                             <p align="center">
                                                 <a href="{{url('/editProfile')}}" class="btn btn-primary" role="button">Edit Profile</a>
                                             </p>
-
+                                            @endif
                                     </div>
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-4">
                                 <h4><span class="badge badge-secondary">About</span></h4>
-                                <p>{{$data->about}}</p>
+                                <p>{{$uData->about}}</p>
 
                             </div>
                         </div>
@@ -49,12 +51,10 @@
                             </div>
                         @endif
 
-
-
-
                     </div>
                 </div>
             </div>
+            @endforeach
         </div>
     </div>
 @endsection

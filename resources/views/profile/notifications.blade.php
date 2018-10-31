@@ -30,13 +30,9 @@
                             <div class="row">
                                 <ul>
                                     <li>
-                                        <p><a style="font-weight: bold; color: green;" href="{{$note->name}}"></a></p>
-
+                                        <p><a style="font-weight: bold; color: green;" href="{{url('/profile')}}/{{$note->slug}}">{{$note->name}}</a> {{$note->note}}</p>
                                     </li>
-
                                 </ul>
-
-
                             </div>
                         @endforeach
                     </div>
