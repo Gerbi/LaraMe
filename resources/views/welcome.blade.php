@@ -8,6 +8,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -69,8 +70,7 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
-
+                        <a href="{{ url('/home') }}">DASHBOARD</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
 
@@ -82,21 +82,22 @@
             @endif
 
             <div class="container">
-                <div class="col-md-12" style="background-color: #fff">
-                    <div class="col md-2">
-                        <img src="" style="width: 100px; margin: 10px;"  alt="">
-                    </div>
+                @foreach($posts as $post)
+                <div class="row" style="background-color: #fff">
                     <div class="col-md-2">
-                        <h3>nam eof user</h3>
-                        <p>City name and country</p>
-
-                        <p class="col-md-12" style="color: #333;">
-                            here updated status written by users
-                        </p>
+                        <img src="{{url('../')}}/public/img/{{$post->pic}}" style="width: 100px; margin: 10px;"  alt="" class="rounded-circle">
+                    </div>
+                    <div class="col-md-10">
+                        <h3>{{ucwords($post->name)}}</h3>
+                        <p><i class="fas fa-globe-americas"></i> {{$post->city}} | {{$post->country}}</p>
 
                     </div>
-                    Laravel
+                    <p class="col-md-12" style="color: #333;">
+                        {{$post->content}}
+                    </p>
                 </div>
+
+            @endforeach
             </div>
         </div>
     </body>
