@@ -18,5 +18,22 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    data: {
+        msg: 'Update new Posts',
+        content: ''
+    },
+    methods: {
+        addPost(){
+
+            axios.post('http://localhost:8000/addPost',{
+                content: this.content
+            }).then(function (response) {
+                console.log('Saved successfully'); //Muestra si es correcto
+
+            }).catch(function (error) {
+                console.log(error); //error
+            });
+        }
+    }
 });

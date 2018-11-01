@@ -93,14 +93,11 @@
                                     ->get();
 
                             ?>    
-                            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" style="width: 320px; background-color: #E4E9F2;">
+                            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" style="width: 320px;">
                                 @foreach($notes as $note)
-                                    <a href="{{url('/notifications')}}/{{$note->id}}">
-                                        @if($note->status==1)
-                                            <li style="background:#E4E9F2; padding:10px">
-                                        @else
-                                            <li style="padding:10px">
-                                                @endif
+                                    <a class="dropdown-item" href="{{url('/notifications')}}/{{$note->id}}" style="text-decoration: none">
+                                            <li style="padding:10px" class="dropdown-item">
+
                                                 <div class="row">
                                                     <div class="col-md-2">
                                                         <img src="{{url('../')}}/public/img/{{$note->pic}}"
@@ -108,7 +105,7 @@
                                                     </div>
 
                                                     <div class="col-md-10">
-                                                        <b style="color:green; font-size:90%">{{ucwords($note->name)}}</b>
+                                                        <b style="color:green; font-size:90%">{{ucwords($note->name)}}</b><br>
                                                         <span style="color:#000; font-size:90%">{{$note->note}}</span>
                                                         <br/>
                                                         <small style="color:#90949C"> <i aria-hidden="true" class="fa fa-users"></i>

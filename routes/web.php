@@ -33,6 +33,7 @@ Route::get('/', function () {
 });
 
 
+Route::post('/addPost', 'PostsController@addPost');
 
 Auth::routes();
 
@@ -75,8 +76,7 @@ Route::group(['middleware' => 'auth'], function () {
             ->where('user_requested', $loggedUser)
             ->where('requester', $id)
             ->delete();
-        return back()->with('msg', 'You are not friend with this person');;
-
+        return back()->with('msg', 'You are not friend with this person');
     });
 
 

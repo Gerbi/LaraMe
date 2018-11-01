@@ -4,12 +4,16 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
         <title>Laravel</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 
+        <!-- Scripts -->
+        {{--<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>--}}
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <style>
@@ -82,6 +86,13 @@
             @endif
 
             <div class="container">
+                <div id="app">
+                    @{{msg}} <small style="color: green;">@{{ content }}</small>
+                    <form   action="" method="post" enctype="multipart/form-data" v-on:submit.prevent="addPost">
+                        <textarea name="" id="" cols="30" rows="10" v-model="content"></textarea>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </form>
+                </div>
                 @foreach($posts as $post)
                 <div class="row" style="background-color: #fff">
                     <div class="col-md-2">
@@ -100,5 +111,7 @@
             @endforeach
             </div>
         </div>
+        <!-- Scripts -->
+        <script src="{{ asset('js/app.js') }}"></script>
     </body>
 </html>
