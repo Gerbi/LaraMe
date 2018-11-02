@@ -21,8 +21,25 @@ const app = new Vue({
     el: '#app',
     data: {
         msg: 'Update new Posts',
-        content: ''
+        content: '',
+        posts: []
     },
+    ready: function(){
+        this.created();
+
+    },
+
+    created(){
+        axios.post('http://localhost:8000/posts')
+            .then(response => {
+                console.log(response);
+            this.posts = response.data;
+        }).catch(function (error) {
+            console.log(error); //error
+        });
+    },
+
+
     methods: {
         addPost(){
 

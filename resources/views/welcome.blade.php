@@ -85,30 +85,35 @@
                 </div>
             @endif
 
-            <div class="container">
-                <div id="app">
+            <div class="container" id="app">
+
                     @{{msg}} <small style="color: green;">@{{ content }}</small>
                     <form   action="" method="post" enctype="multipart/form-data" v-on:submit.prevent="addPost">
                         <textarea name="" id="" cols="30" rows="10" v-model="content"></textarea>
                         <button type="submit" class="btn btn-success">Submit</button>
                     </form>
-                </div>
-                @foreach($posts as $post)
-                <div class="row" style="background-color: #fff">
-                    <div class="col-md-2">
-                        <img src="{{url('../')}}/public/img/{{$post->pic}}" style="width: 100px; margin: 10px;"  alt="" class="rounded-circle">
-                    </div>
-                    <div class="col-md-10">
-                        <h3>{{ucwords($post->name)}}</h3>
-                        <p><i class="fas fa-globe-americas"></i> {{$post->city}} | {{$post->country}}</p>
+                    @{{ posts }}
 
+                <div v-for="post in posts">
+                    <div class="row" style="background-color: #fff">
+                        <div class="col-md-2">
+                            <img src="{{url('../')}}/public/img/" style="width: 100px; margin: 10px;"  alt="" class="rounded-circle">
+                        </div>
+                        <div class="col-md-10">
+                            <h3>@{{post.name}}</h3>
+                            <p><i class="fas fa-globe-americas"></i> @{{post.city}} | @{{post.country}}</p>
+                            <small><b>Gender: </b>@{{post.gender}}</small>
+                            <br>
+                            <small>@{{post.created_at}}</small>
+                        </div>
+                        <p class="col-md-12" style="color: #333;">
+                            @{{post.content}}
+                        </p>
                     </div>
-                    <p class="col-md-12" style="color: #333;">
-                        {{$post->content}}
-                    </p>
                 </div>
 
-            @endforeach
+
+
             </div>
         </div>
         <!-- Scripts -->
